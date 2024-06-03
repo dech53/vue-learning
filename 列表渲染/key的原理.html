@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <ul v-for="(p,index) in persons" :key="p.id" v-show="flag">
+        <li>{{p.id}}-{{p.name}}-{{p.age}}
+            <input type="text"></li>
+    </ul>
+    <button @click="changeFlag">点击显示div</button>
+    <button @click="add">添加新对象</button>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'dech53',
+            flag: true,
+            persons: [
+                {id: 1, name: 's', age: 18},
+                {id: 2, name: 'x', age: 18},
+                {id: 3, name: 'y', age: 18}
+            ]
+        },
+        methods: {
+            changeFlag() {
+                this.flag = !this.flag
+            },
+            add() {
+                person = {id: 4, name: 'k', age: 18}
+                this.persons.unshift(person)
+            }
+        },
+        computed: {}
+    })
+</script>
+</body>
+</html>

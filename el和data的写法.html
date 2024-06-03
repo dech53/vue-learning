@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <input type="text" :value="name">
+    <h1>{{$options}}</h1>
+    <h3>{{$emit}}</h3>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    //el的两种写法
+    // const v = new Vue({
+    //     data: {
+    //         name: 'dech53'
+    //     }
+    // })
+    // console.log(v)
+    // v.$mount('#root')
+    const vm = new Vue({
+        el: '#root',
+        //data的两种写法
+        //定义函数具有返回值
+        //对象式
+        data() {
+            return {
+                name: 'DECH53'
+            }
+        }
+    })
+    console.log(vm)
+</script>
+</body>
+</html>

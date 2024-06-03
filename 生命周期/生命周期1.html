@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2 :style="{opacity}">dech53</h2>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false;
+      const vm = new Vue({
+        el: "#root",
+        data: {
+          name: "dech53",
+          opacity: 1,
+        },
+        methods: {},
+        computed: {},
+        mounted() {
+            console.log("定时器调用");
+          setInterval(() => {
+            this.opacity -= 0.01;
+            if (this.opacity <= 0) {
+              this.opacity = 1;
+            }
+          }, 16);
+        },
+      });
+    </script>
+  </body>
+</html>

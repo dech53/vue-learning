@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>今天天气很{{info}}</h1>
+    <br>
+    <button id="switch" @click.passive="changeWeather">切换天气</button>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            isHot: true
+        },
+        methods: {
+            changeWeather() {
+                this.isHot = !this.isHot
+            }
+        },
+        computed: {
+            info() {
+                return this.isHot ? '炎热' : '凉爽'
+            }
+        },
+        // watch:{
+        //     isHot:{
+        //         immediate:true,
+        //         handler(newValue,oldValue){
+        //             console.log('isHot改变',newValue,oldValue)
+        //         }
+        //     },
+        //     info:{
+        //         immediate:true,
+        //         handler(newValue,oldValue){
+        //             console.log('info改变',newValue,oldValue)
+        //         }
+        //     }
+        // }
+    })
+    vm.$watch('isHot', {
+        immediate: true,
+        handler(newValue, oldValue) {
+            console.log('isHot改变', newValue, oldValue)
+        }
+    })
+</script>
+</body>
+</html>

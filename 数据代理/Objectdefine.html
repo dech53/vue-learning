@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    let number = 18
+    let person = {
+        name: 'dech',
+        sex: '男'
+    }
+    Object.defineProperty(person, 'age', {
+        // value: 18,
+        // enumerable: true,//控制属性是否可以被遍历
+        // writable: true,//控制属性是否可以被修改
+        // configurable: true//控制属性是否可以被删除
+        get() {
+            console.log('age被访问')
+            return number
+        },
+        set(value) {
+            console.log('age值被修改')
+            number = value
+        }
+    })
+    number = 19
+    console.log(person)
+</script>
+</body>
+</html>

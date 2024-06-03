@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>{{name}}</h2>
+    <h2>{{address}}</h2>
+    <br>
+    学生信息
+    <h2>
+        {{student.name}}-{{student.age.rage + '-' + student.age.sage}}
+        <br>
+    </h2>
+    <h2 v-if="student.sex">性别:{{student.sex}}</h2>
+    <hr>
+    <input type="text" placeholder="名字" v-model="input.name">
+    <input type="text" placeholder="年龄" v-model="input.age">
+    <button @click="add">添加</button>
+    <br>
+    朋友
+    <ul>
+        <li v-for="(p,index) in student.friends" :key="p.name">{{p.name}}-{{p.age}}</li>
+    </ul>
+    <br>
+    爱好
+    <ul>
+        <li v-for="(p,index) in student.hobby" :key="index">{{p}}</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'dech53',
+            address: '6',
+            student: {
+                name: 'D',
+                age: {
+                    rage: 18,
+                    sage: 10
+                },
+                hobby: [
+                    'c',
+                    'd',
+                    't'
+                ]
+                ,
+                friends: [
+                    {name: 'J', age: 17},
+                    {name: 'X', age: 12}
+                ]
+
+            },
+            input: {
+                name: '',
+                age: ''
+            }
+        },
+        methods: {
+            add() {
+                this.$set(this.student, 'sex', '男')
+                Vue.set(this.student, 'sex', '男')
+            }
+        },
+        computed: {}
+    })
+</script>
+</body>
+</html>

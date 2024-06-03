@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <button @click="student.age++">年龄+1岁</button>
+    <br/>
+    <button @click="addsex">添加性别属性，默认值：男</button>
+    <br>
+    <button @click="student.sex = '未知'">修改性别属性</button>
+    <br/>
+    <button @click="addFriends">在列表首位添加一个朋友</button>
+    <br/>
+    <button @click="changFriends">修改第一个朋友的名字为：张三</button>
+    <br/>
+    <button @click="removeSmoke">过滤掉爱好中的抽烟</button>
+    <br/>
+    <button @click="addHobby">添加一个爱好</button>
+    <br/>
+    <button @click="changeHobby">修改第一个爱好为：开车</button>
+    <br/>
+    <h2>
+        学生信息:
+        {{student.name}}
+        <br>
+    </h2>
+    <h2>
+        年龄:
+        {{student.age}}
+        <br>
+    </h2>
+    <h2 v-if="student.sex">性别:{{student.sex}}</h2>
+    <br>
+    <hr>
+    <br>
+    朋友
+    <ul>
+        <li v-for="(p,index) in student.friends" :key="p.name">{{p.name}}-{{p.age}}</li>
+    </ul>
+    <br>
+    爱好
+    <ul>
+        <li v-for="(p,index) in student.hobby" :key="index">{{p}}</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'dech53',
+            student: {
+                name: 'D',
+                age: 18,
+                hobby: ['c', 'd', 't'],
+                friends: [
+                    {name: 'J', age: 17},
+                    {name: 'X', age: 12}
+                ]
+            }
+        },
+        methods: {//一定要加s
+            addsex() {
+                this.$set(this.student, 'sex', '男')
+                Vue.set(this.student, 'sex', '男')
+            },
+            addFriends() {
+                this.student.friends.unshift({name: 'G', age: 20})
+            },
+            changFriends() {
+                this.student.friends[0].name = '张三'
+            },
+            addHobby() {
+                this.student.hobby.push('f')
+            },
+            changeHobby() {
+                // this.student.hobby.splice(0,1,'开车')
+                // Vue.set(this.student.hobby,0,'开车')
+                this.$set(this.student.hobby, 0, '开车')
+            },
+            removeSmoke() {
+                this.student.hobby = this.student.hobby.filter((h) => {
+                   return h !== 't'
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

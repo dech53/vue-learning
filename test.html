@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>{{name}},{{Date.now()}},{{school.name}}</h1><br>
+    <a :href="school.url" :x="Date.now()">点击前往B站</a>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    new Vue({
+        el: '#root',
+        data: {
+            name: 'dech53',
+            school: {
+                name: 'DECH53',
+                url: 'http://www.bilibili.com'
+            }
+        }
+    })
+</script>
+</body>
+</html>

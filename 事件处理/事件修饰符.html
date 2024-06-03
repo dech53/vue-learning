@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        * {
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        .demo1 {
+            border: aqua;
+            height: 40px;
+            width: 80px;
+            background: aqua;
+        }
+
+        .box1 {
+            padding: 5px;
+            background: skyblue;
+        }
+
+        .box2 {
+            padding: 5px;
+            background: rebeccapurple;
+        }
+
+        .list {
+            width: 200px;
+            height: 200px;
+            background: orange;
+            overflow: auto;
+        }
+
+        li {
+            height: 200px;
+            width: 200px;
+            background: peru;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <h3>{{title}}</h3>
+
+    <a href="http://www.bilibili.com" @click.prevent="showInfo">点击</a>
+    <div class="demo1" @click="showInfo">
+        <button @click.stop="showInfo">点击事件</button>
+    </div>
+    <button @click.once="showInfo">点击事件</button>
+    <hr>
+    <div class="box1" @click.capture="showMessage(1)">
+        div1
+        <div class="box2" @click="showMessage(2)">
+            div2
+        </div>
+    </div>
+    <hr>
+    <ul class="list" @scroll.passive="scrollAction">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+    </ul>
+    <br>
+    <h1>{{number}}</h1>
+
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    let value = 0;
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            title: '基本事件',
+            number: value
+        },
+        methods: {
+            showInfo(event) {
+                alert('弹窗')
+            },
+            showMessage(msg) {
+                console.log(msg)
+            },
+            scrollAction() {
+                console.log('@')
+                value = value + 1
+                this.$set(this, 'number', value)
+            }
+        }
+    })
+</script>
+</body>
+</html>

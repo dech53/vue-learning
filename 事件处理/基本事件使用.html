@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h4>{{title}}</h4>
+    <br>
+    <button @click="showInfo1">基本事件1</button>
+    <br>
+    <button @click="showInfo2(66,$event)">基本事件2</button>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            title: '基本事件'
+        },
+        methods: {//methods中配置的东西不会被Vue进行数据劫持
+            showInfo1() {
+                // event.id = 1
+                alert('弹窗信息1')
+                // console.log(event.target)
+                // console.log(event.id)
+                // console.log(event.target.innerText)
+                // console.log(this._data)此处的this是vm
+            },
+            showInfo2(number, event) {
+                alert('弹窗信息2')
+                console.log(number)
+                event.target.innerText = number
+            }
+        }
+    })
+</script>
+</body>
+</html>
